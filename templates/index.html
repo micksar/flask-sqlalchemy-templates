@@ -13,6 +13,7 @@
                 <h2> Manage <b>Employees</b> <button type="button" class="btn btn-success float-end"
                 data-toggle="modal" data-target="#mymodal"> Add new Employees </button> </h2>
 
+
                 <table class="table table-hover table-dark">
                     <tr>
                         <th>ID</th>
@@ -21,18 +22,19 @@
                         <th>Phone</th>
                         <th>Action</th>
                     </tr>
-
+                    
+                    {% for row in employees %}
                     <tr>
-                        <td>01</td>
-                        <td>Mike</td>
-                        <td>test@gmail.com</td>
-                        <td>6978982334</td>
+                        <td>{{row.id}}</td>
+                        <td>{{row.name}}</td>
+                        <td>{{row.email}}</td>
+                        <td>{{row.phone}}</td>
                         <td>
                             <a href="" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit">Edit</a>
                             <a href="" class="btn btn-danger btn-xs" onclick="return confirm('Are you Sure to Delete?')">Delete</a>
                         </td>
                     </tr>
-
+                    {%endfor%}
                 </table>
 
             </div>
@@ -49,22 +51,22 @@
 
         <div class="modal-body">
 
-          <form action="" method="POST">
+          <form action="{{url_for('insert')}}" method="POST">
 
 
             <div class="form-group">
               <label for="name">Name:</label>
-              <input type="text" class="form-control" id="name" placeholder="Enter name" required="1">
+              <input type="text" class="form-control" id="name" name="name" placeholder="Enter name" required="1">
             </div>
 
             <div class="form-group">
               <label for="email">Email:</label>
-              <input type="email" class="form-control" id="email" placeholder="Enter email" required="1">
+              <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required="1">
             </div>
 
             <div class="form-group">
               <label for="phone">Phone:</label>
-              <input type="tel" class="form-control" id="phone" placeholder="Enter phone number" required="1">
+              <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter phone number" required="1">
             </div>
 
             <div class="form-group">
